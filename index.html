@@ -1,0 +1,650 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>TECINSTAL CDMX</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy:        #0B1D3A;
+  --steel:       #162F5C;
+  --electric:    #F5B700;
+  --electric-dk: #C49200;
+  --bg:          #F2F5FB;
+  --surface:     #FFFFFF;
+  --fg:          #0C1A2E;
+  --fg-muted:    #4A5E7A;
+  --border:      #D8E2EE;
+  --font-disp:   'Barlow Condensed', sans-serif;
+  --font-body:   'Outfit', sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg:       #060D1C;
+    --surface:  #0D1E36;
+    --fg:       #E4EBF8;
+    --fg-muted: #7090B8;
+    --border:   #152846;
+    --electric-dk: #F5B700;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg:       #060D1C;
+  --surface:  #0D1E36;
+  --fg:       #E4EBF8;
+  --fg-muted: #7090B8;
+  --border:   #152846;
+  --electric-dk: #F5B700;
+  color-scheme: dark;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: var(--font-body);
+  background: var(--bg);
+  color: var(--fg);
+  overflow-x: hidden;
+}
+
+/* NAV */
+nav {
+  position: sticky;
+  top: env(safe-area-inset-top, 0px);
+  background: var(--navy);
+  padding: 0.85rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  z-index: 100;
+  border-bottom: 2px solid var(--electric);
+}
+.logo {
+  font-family: var(--font-disp);
+  font-size: 1.55rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  color: #fff;
+  text-decoration: none;
+}
+.logo span { color: var(--electric); }
+.nav-links {
+  display: flex;
+  gap: 1.6rem;
+  list-style: none;
+}
+.nav-links a {
+  color: rgba(255,255,255,0.68);
+  text-decoration: none;
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--electric); }
+.nav-wa {
+  background: #25D366;
+  color: #fff;
+  font-weight: 600;
+  font-size: 0.85rem;
+  padding: 0.5rem 1.1rem;
+  border-radius: 4px;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  white-space: nowrap;
+  transition: opacity 0.2s;
+}
+.nav-wa:hover { opacity: 0.88; }
+@media (max-width: 680px) {
+  nav { padding: 0.75rem 1rem; }
+  .nav-links { display: none; }
+}
+
+/* HERO */
+.hero {
+  background: var(--navy);
+  position: relative;
+  overflow: hidden;
+  padding: 5rem 1.5rem 4.5rem;
+  text-align: center;
+}
+.hero-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(245,183,0,0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(245,183,0,0.07) 1px, transparent 1px);
+  background-size: 44px 44px;
+  mask-image: radial-gradient(ellipse 75% 80% at 50% 50%, black 30%, transparent 100%);
+  pointer-events: none;
+}
+.hero-inner {
+  position: relative;
+  z-index: 1;
+  max-width: 780px;
+  margin: 0 auto;
+}
+.hero-badge {
+  display: inline-block;
+  font-family: var(--font-disp);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--electric);
+  border: 1px solid rgba(245,183,0,0.35);
+  padding: 0.3rem 0.9rem;
+  border-radius: 2px;
+  margin-bottom: 1.4rem;
+}
+.hero h1 {
+  font-family: var(--font-disp);
+  font-size: clamp(3rem, 9vw, 6rem);
+  font-weight: 800;
+  line-height: 0.95;
+  letter-spacing: 0.01em;
+  color: #fff;
+  text-wrap: balance;
+  margin-bottom: 1.25rem;
+}
+.hero h1 em {
+  font-style: normal;
+  color: var(--electric);
+  display: block;
+}
+.hero-sub {
+  font-size: clamp(1rem, 2.2vw, 1.15rem);
+  color: rgba(255,255,255,0.65);
+  max-width: 500px;
+  margin: 0 auto 2.2rem;
+  line-height: 1.65;
+  text-wrap: balance;
+}
+.hero-actions {
+  display: flex;
+  gap: 0.85rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.btn-electric {
+  background: var(--electric);
+  color: var(--navy);
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 0.95rem;
+  padding: 0.85rem 2rem;
+  border-radius: 4px;
+  text-decoration: none;
+  transition: background 0.2s, transform 0.15s;
+}
+.btn-electric:hover { background: var(--electric-dk); transform: translateY(-2px); }
+.btn-outline {
+  border: 1.5px solid rgba(255,255,255,0.3);
+  color: rgba(255,255,255,0.85);
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 0.95rem;
+  padding: 0.85rem 2rem;
+  border-radius: 4px;
+  text-decoration: none;
+  transition: border-color 0.2s, color 0.2s;
+}
+.btn-outline:hover { border-color: var(--electric); color: var(--electric); }
+
+/* STATS STRIP */
+.stats {
+  background: var(--steel);
+  padding: 1.1rem 2rem;
+  display: flex;
+  justify-content: center;
+  gap: clamp(1.5rem, 5vw, 4rem);
+  flex-wrap: wrap;
+}
+.stat { text-align: center; }
+.stat-num {
+  font-family: var(--font-disp);
+  font-size: 1.9rem;
+  font-weight: 800;
+  color: var(--electric);
+  line-height: 1;
+}
+.stat-label {
+  font-size: 0.7rem;
+  font-weight: 500;
+  color: rgba(255,255,255,0.55);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+/* SECTION COMMON */
+.section { padding: 4.5rem 1.5rem; }
+.section-inner { max-width: 1080px; margin: 0 auto; }
+.eyebrow {
+  font-family: var(--font-disp);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--electric-dk);
+  margin-bottom: 0.5rem;
+}
+.section-title {
+  font-family: var(--font-disp);
+  font-size: clamp(2rem, 4.5vw, 3rem);
+  font-weight: 800;
+  line-height: 1.05;
+  text-wrap: balance;
+  margin-bottom: 0.75rem;
+  color: var(--fg);
+}
+.section-lead {
+  font-size: 1rem;
+  color: var(--fg-muted);
+  max-width: 540px;
+  line-height: 1.7;
+  margin-bottom: 2.5rem;
+}
+
+/* SERVICES */
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 1.25rem;
+}
+.service-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 1.75rem 1.5rem;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.22s, box-shadow 0.22s;
+}
+.service-card::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: var(--electric);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
+}
+.service-card:hover { transform: translateY(-4px); box-shadow: 0 10px 30px rgba(11,29,58,0.1); }
+.service-card:hover::after { transform: scaleX(1); }
+.svc-icon {
+  width: 48px;
+  height: 48px;
+  background: rgba(245,183,0,0.12);
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  margin-bottom: 1rem;
+}
+.service-card h3 {
+  font-family: var(--font-disp);
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  color: var(--fg);
+}
+.service-card p {
+  font-size: 0.875rem;
+  color: var(--fg-muted);
+  line-height: 1.65;
+}
+.service-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: 1rem;
+}
+.tag {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--navy);
+  background: rgba(245,183,0,0.18);
+  padding: 0.2rem 0.55rem;
+  border-radius: 2px;
+  letter-spacing: 0.03em;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .tag { color: var(--electric); background: rgba(245,183,0,0.1); }
+}
+:root[data-theme="dark"] .tag { color: var(--electric); background: rgba(245,183,0,0.1); }
+
+/* WHY US */
+.why-section {
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+.why-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 2rem 2.5rem;
+}
+.why-item {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+  min-width: 0;
+}
+.why-dot {
+  width: 40px;
+  height: 40px;
+  min-width: 40px;
+  background: var(--electric);
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+}
+.why-item h4 {
+  font-family: var(--font-disp);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--fg);
+  margin-bottom: 0.25rem;
+}
+.why-item p {
+  font-size: 0.85rem;
+  color: var(--fg-muted);
+  line-height: 1.6;
+}
+
+/* CLIENTS */
+.clients-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+.client-chip {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 0.65rem 1.2rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--fg-muted);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.client-chip span { font-size: 1rem; }
+
+/* CTA SECTION */
+.cta-section {
+  background: var(--navy);
+  padding: 4.5rem 1.5rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.cta-section .hero-grid { opacity: 0.5; }
+.cta-inner { position: relative; z-index: 1; max-width: 620px; margin: 0 auto; }
+.cta-section h2 {
+  font-family: var(--font-disp);
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  font-weight: 800;
+  color: #fff;
+  line-height: 1.05;
+  text-wrap: balance;
+  margin-bottom: 1rem;
+}
+.cta-section h2 em {
+  font-style: normal;
+  color: var(--electric);
+}
+.cta-section p {
+  color: rgba(255,255,255,0.62);
+  font-size: 0.95rem;
+  margin-bottom: 2rem;
+  line-height: 1.7;
+}
+.cta-actions {
+  display: flex;
+  gap: 0.85rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 2rem;
+}
+.btn-wa {
+  background: #25D366;
+  color: #fff;
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 1rem;
+  padding: 0.9rem 2.2rem;
+  border-radius: 4px;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: opacity 0.2s, transform 0.15s;
+}
+.btn-wa:hover { opacity: 0.88; transform: translateY(-2px); }
+.contact-note {
+  font-size: 0.82rem;
+  color: rgba(255,255,255,0.4);
+  margin-top: 0.75rem;
+}
+.contact-number {
+  font-family: var(--font-disp);
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: rgba(255,255,255,0.7);
+  letter-spacing: 0.08em;
+  user-select: all;
+}
+
+/* FOOTER */
+footer {
+  background: #050C18;
+  color: rgba(255,255,255,0.35);
+  text-align: center;
+  padding: 1.5rem 1.5rem;
+  font-size: 0.78rem;
+  line-height: 1.7;
+}
+footer strong { color: rgba(255,255,255,0.55); }
+
+@media (prefers-reduced-motion: reduce) {
+  .service-card, .btn-electric, .btn-wa { transition: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="logo">TEC<span>INSTAL</span></a>
+  <ul class="nav-links">
+    <li><a href="#servicios">Servicios</a></li>
+    <li><a href="#nosotros">Nosotros</a></li>
+    <li><a href="#contacto">Contacto</a></li>
+  </ul>
+  <a href="https://wa.me/5215500000000" target="_blank" rel="noopener" class="nav-wa">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 00-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    Cotiza gratis
+  </a>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="hero-grid" aria-hidden="true"></div>
+  <div class="hero-inner">
+    <div class="hero-badge">Instalaciones profesionales · CDMX</div>
+    <h1>
+      Seguridad, clima
+      <em>y electricidad.</em>
+    </h1>
+    <p class="hero-sub">
+      Instalación y mantenimiento de CCTV, aires acondicionados e instalaciones eléctricas para hogares, oficinas y constructoras en toda la Ciudad de México.
+    </p>
+    <div class="hero-actions">
+      <a href="#contacto" class="btn-electric">Solicitar cotización</a>
+      <a href="#servicios" class="btn-outline">Ver servicios</a>
+    </div>
+  </div>
+</header>
+
+<!-- STATS -->
+<div class="stats" aria-label="Cifras del negocio">
+  <div class="stat">
+    <div class="stat-num">100%</div>
+    <div class="stat-label">Garantía en trabajo</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num">24 h</div>
+    <div class="stat-label">Respuesta rápida</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num">CDMX</div>
+    <div class="stat-label">Cobertura total</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num">Dom–Corp</div>
+    <div class="stat-label">Todo tipo de cliente</div>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<section class="section" id="servicios">
+  <div class="section-inner">
+    <p class="eyebrow">Lo que hacemos</p>
+    <h2 class="section-title">Servicios especializados</h2>
+    <p class="section-lead">Contamos con el equipo y la experiencia para proyectos residenciales, comerciales y de construcción en toda la CDMX.</p>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="svc-icon" aria-hidden="true">📷</div>
+        <h3>Videovigilancia CCTV</h3>
+        <p>Instalación y mantenimiento de sistemas de circuito cerrado para hogares, negocios y corporaciones. Monitoreo remoto incluido.</p>
+        <div class="service-tags">
+          <span class="tag">IP / Analógico</span>
+          <span class="tag">Mantenimiento</span>
+          <span class="tag">Remoto 24/7</span>
+        </div>
+      </div>
+      <div class="service-card">
+        <div class="svc-icon" aria-hidden="true">🔔</div>
+        <h3>Intercomunicadores y Videoporteros</h3>
+        <p>Sistemas de acceso controlado con audio y video para departamentos, conjuntos habitacionales y edificios de oficinas.</p>
+        <div class="service-tags">
+          <span class="tag">Residencial</span>
+          <span class="tag">Corporativo</span>
+          <span class="tag">Cableado</span>
+        </div>
+      </div>
+      <div class="service-card">
+        <div class="svc-icon" aria-hidden="true">❄️</div>
+        <h3>Aires Acondicionados y Mini Splits</h3>
+        <p>Instalación, recarga y mantenimiento preventivo y correctivo de equipos de climatización de todas las marcas.</p>
+        <div class="service-tags">
+          <span class="tag">Mini split</span>
+          <span class="tag">Central</span>
+          <span class="tag">Mantenimiento</span>
+        </div>
+      </div>
+      <div class="service-card">
+        <div class="svc-icon" aria-hidden="true">⚡</div>
+        <h3>Instalaciones Eléctricas</h3>
+        <p>Proyectos eléctricos desde cero o ampliaciones para vivienda, locales comerciales y obras de construcción.</p>
+        <div class="service-tags">
+          <span class="tag">Residencial</span>
+          <span class="tag">Comercial</span>
+          <span class="tag">CFE trámites</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section class="section why-section" id="nosotros">
+  <div class="section-inner">
+    <p class="eyebrow">Por qué elegirnos</p>
+    <h2 class="section-title">Trabajo limpio, resultados garantizados</h2>
+    <div class="why-grid">
+      <div class="why-item">
+        <div class="why-dot" aria-hidden="true">🛡️</div>
+        <div>
+          <h4>Garantía en cada trabajo</h4>
+          <p>Respaldamos cada instalación y mantenimiento. Si algo falla, regresamos sin costo extra.</p>
+        </div>
+      </div>
+      <div class="why-item">
+        <div class="why-dot" aria-hidden="true">⏱️</div>
+        <div>
+          <h4>Respuesta en 24 horas</h4>
+          <p>Coordinamos visita técnica rápido. Sin largas esperas ni tiempos muertos en tu proyecto.</p>
+        </div>
+      </div>
+      <div class="why-item">
+        <div class="why-dot" aria-hidden="true">🔧</div>
+        <div>
+          <h4>Técnicos certificados</h4>
+          <p>Personal con experiencia verificable en instalaciones eléctricas, seguridad y climatización.</p>
+        </div>
+      </div>
+      <div class="why-item">
+        <div class="why-dot" aria-hidden="true">📋</div>
+        <div>
+          <h4>Cotización sin compromiso</h4>
+          <p>Te damos precio claro por WhatsApp antes de cualquier visita. Sin sorpresas al final.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CLIENTS -->
+<section class="section">
+  <div class="section-inner">
+    <p class="eyebrow">A quién atendemos</p>
+    <h2 class="section-title">Desde tu hogar hasta grandes proyectos</h2>
+    <p class="section-lead">Operamos en toda la CDMX con experiencia en proyectos de cualquier escala.</p>
+    <div class="clients-row">
+      <div class="client-chip"><span>🏠</span> Casas y departamentos</div>
+      <div class="client-chip"><span>🏢</span> Oficinas y locales</div>
+      <div class="client-chip"><span>🏗️</span> Constructoras</div>
+      <div class="client-chip"><span>🏭</span> Naves industriales</div>
+      <div class="client-chip"><span>🏨</span> Hoteles y restaurantes</div>
+      <div class="client-chip"><span>🏫</span> Escuelas e instituciones</div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section" id="contacto">
+  <div class="hero-grid" aria-hidden="true"></div>
+  <div class="cta-inner">
+    <h2>¿Listo para tu <em>instalación?</em></h2>
+    <p>Escríbenos por WhatsApp y te respondemos hoy mismo con una cotización sin costo. Atendemos toda la Ciudad de México.</p>
+    <div class="cta-actions">
+      <a href="https://wa.me/5215500000000" target="_blank" rel="noopener" class="btn-wa">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 00-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Cotizar por WhatsApp
+      </a>
+    </div>
+    <div class="contact-number">55 0000 0000</div>
+    <p class="contact-note">Número de contacto — cópialo y escríbenos directamente</p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <strong>TECINSTAL CDMX</strong> · Instalaciones profesionales en la Ciudad de México<br>
+  CCTV · Intercomunicadores · Aires Acondicionados · Instalaciones Eléctricas
+</footer>
+
+</body>
+</html>
